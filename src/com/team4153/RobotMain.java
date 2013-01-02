@@ -8,11 +8,9 @@
 package com.team4153;
 
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import com.team4153.commands.CommandBase;
-import com.team4153.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,15 +21,15 @@ import com.team4153.commands.ExampleCommand;
  */
 public class RobotMain extends IterativeRobot {
 
-    Command autonomousCommand;
-
+    //Command DriveCommand;
+    Scheduler commandScheduler = Scheduler.getInstance();
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+        //DriveCommand = new DriveWithJoystick();
 
         // Initialize all subsystems
         CommandBase.init();
@@ -39,14 +37,14 @@ public class RobotMain extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        autonomousCommand.start();
+        //DriveCommand.start();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+        commandScheduler.run();
     }
 
     public void teleopInit() {
@@ -54,13 +52,13 @@ public class RobotMain extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
+        //DriveCommand.cancel();
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        commandScheduler.run();
     }
 }
