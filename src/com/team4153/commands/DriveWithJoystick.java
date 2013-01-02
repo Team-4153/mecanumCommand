@@ -1,8 +1,6 @@
 
 package com.team4153.commands;
 
-import com.team4153.RobotMap;
-
 /**
  * Chassis drive command.
  * 
@@ -14,6 +12,7 @@ public class DriveWithJoystick extends CommandBase {
         // Use requires() here to declare subsystem dependencies
 	requires(chassis);
 	requires(gyro);
+	System.out.println("** DriveWithJoystick const");
     }
 
     // Called just before this Command runs the first time
@@ -28,7 +27,7 @@ public class DriveWithJoystick extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return (!oi.getJoystick().getRawButton(RobotMap.JSBUTTON_TRIGGER));
+	return (!oi.getTriggerButton().get());
     }
 
     // Called once after isFinished returns true

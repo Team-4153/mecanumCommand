@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
     private Joystick joystick;
-    private JoystickButton trigger;
+    private Button triggerButton;
     
     public OI(){
 	joystick = new Joystick(RobotMap.JOYSTICK_PORT);
-	trigger = new JoystickButton(joystick, RobotMap.JSBUTTON_TRIGGER);
-	trigger.whenPressed(new DriveWithJoystick());
+	triggerButton = new JoystickButton(joystick, RobotMap.JSBUTTON_TRIGGER);
+	triggerButton.whenPressed(new DriveWithJoystick());
     }
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -53,6 +53,9 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
     public Joystick getJoystick() {
 	return joystick;
+    }
+    public Button getTriggerButton(){
+	return triggerButton;
     }
 }
 

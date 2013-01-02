@@ -66,6 +66,7 @@ public class Chassis extends Subsystem {
      * Stop the robot chassis from moving
      */
     public void driveHalt() {
+	System.out.println("** driveHalt");
 	this.drive.mecanumDrive_Cartesian(0,0,0,0);
     }
 }
