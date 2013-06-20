@@ -3,4 +3,6 @@
 *.war
 *.ear
 resources/
+suite/
 /build/
+__MACOSX/
