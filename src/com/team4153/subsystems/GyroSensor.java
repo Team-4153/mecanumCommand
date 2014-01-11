@@ -13,25 +13,31 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author 4153student
  */
 public class GyroSensor extends Subsystem {
+
     private Gyro gyro;
-    
+
     public GyroSensor() {
-	gyro = new Gyro(RobotMap.GYRO_CHANNEL);
+        gyro = new Gyro(RobotMap.GYRO_CHANNEL);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-	// Set the default command for a subsystem here.
-	//setDefaultCommand(new MySpecialCommand());
-	
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+
     }
-    
+
     public double getAngle() {
-	return gyro.getAngle();
+        return gyro.getAngle();
     }
-    
-    public void reset(){
-	gyro.reset();
+
+    public String toString() {
+        return "GyroSensor{" + "gyro=" + gyro + '}';
     }
+
+    public void reset() {
+        gyro.reset();
+    }
+
 }
