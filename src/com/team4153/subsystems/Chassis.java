@@ -51,7 +51,7 @@ public class Chassis extends Subsystem {
     
 	drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
     drive.setInvertedMotor(MotorType.kFrontLeft, true);//Left front motor normally opposite
-    drive.setMaxOutput(20);//TODO: Fix the magic numbers
+//    drive.setMaxOutput(20);//TODO: Fix the magic numbers
 //	drive = new RobotDrive(leftRear, leftRear, leftRear, leftRear);
 	drive.setSafetyEnabled(false);
     }
@@ -62,11 +62,11 @@ public class Chassis extends Subsystem {
         final int CPR = 360;
         final double ENCODER_FINAL_POS = 0;
         final double VOLTAGE_RAMP = 40;
-        jag.setPID(0.4, .005, 0);
-        jag.changeControlMode(CANJaguar.ControlMode.kSpeed);
+//        jag.setPID(0.4, .005, 0);
+//        jag.changeControlMode(CANJaguar.ControlMode.kSpeed);
         jag.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
         jag.configEncoderCodesPerRev(CPR);
-        jag.setVoltageRampRate(VOLTAGE_RAMP);
+//        jag.setVoltageRampRate(VOLTAGE_RAMP);
         jag.enableControl(ENCODER_FINAL_POS);
         
         
