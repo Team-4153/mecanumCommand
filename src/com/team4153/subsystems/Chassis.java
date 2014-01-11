@@ -87,7 +87,7 @@ public class Chassis extends Subsystem {
 //	x=stick.getX()/4.0*-1.0; // invert left-right
 //	y=stick.getY()/4.0;
 	twist=stick.getTwist()/3.0;
-//	System.out.println("X: " + x + " Y: " + y + " Twist: " + twist + " Angle: " + heading);
+	
 //	this.drive.mecanumDrive_Cartesian(x, y, twist, heading);
 	
         
@@ -96,6 +96,7 @@ public class Chassis extends Subsystem {
             x=stick.getX()/-2.0;
             y=stick.getY()/-4.0;
             this.drive.mecanumDrive_Cartesian(x, y, twist, heading);
+            System.out.println("X: " + x + " Y: " + y + " Twist: " + twist + " Angle: " + heading);
      //   }
      //   else{
      //       double magnitude, direction;
