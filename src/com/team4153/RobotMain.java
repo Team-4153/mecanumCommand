@@ -4,9 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package com.team4153;
-
 
 import com.team4153.commands.CommandBase;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -23,6 +21,7 @@ public class RobotMain extends IterativeRobot {
 
     //Command DriveCommand;
     Scheduler commandScheduler = Scheduler.getInstance();
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -53,7 +52,7 @@ public class RobotMain extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         //DriveCommand.cancel();
-        
+
     }
 
     /**
