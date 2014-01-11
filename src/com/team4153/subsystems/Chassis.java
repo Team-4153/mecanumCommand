@@ -31,12 +31,16 @@ public class Chassis extends Subsystem {
 	try {
 	    System.out.println("Chassis Construtor started");
 	    rightFront = new CANJaguar(RobotMap.JAG_RIGHT_FRONT_MOTOR);
+        this.configSpeedControl(rightFront);
 	    System.out.println("JAG Right Front works, "+RobotMap.JAG_RIGHT_FRONT_MOTOR);
 	    rightRear = new CANJaguar(RobotMap.JAG_RIGHT_REAR_MOTOR);
+        this.configSpeedControl(rightRear);
 	    System.out.println("JAG Right Back works, "+RobotMap.JAG_RIGHT_REAR_MOTOR);
 	    leftFront = new CANJaguar(RobotMap.JAG_LEFT_FRONT_MOTOR);
+        this.configSpeedControl(leftFront);
 	    System.out.println("JAG Left Front works, "+RobotMap.JAG_LEFT_FRONT_MOTOR);
 	    leftRear = new CANJaguar(RobotMap.JAG_LEFT_REAR_MOTOR);
+        this.configSpeedControl(leftRear);
 	    System.out.println("JAG Left Back works, "+RobotMap.JAG_LEFT_REAR_MOTOR);
             
 	} catch (CANTimeoutException ex) {
@@ -44,6 +48,7 @@ public class Chassis extends Subsystem {
             ex.printStackTrace();
 	    //System.exit(-1);
 	}
+    
 	drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
         drive.setInvertedMotor(MotorType.kFrontLeft, true);//Left front motor normally opposite
        
@@ -53,7 +58,16 @@ public class Chassis extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    private void configSpeedControl(CANJaguar jag) throws CANTimeoutException {
+        final int CPR = 360;
+        final double ENCODER_FINAL_POS = 0;
+        final double VOLTAGE_RAMP = 40;
+        jag.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
+        jag.configEncoderCodesPerRev(CPR);
+        jag.enableControl(ENCODER_FINAL_POS);
+        jag.setVoltageRampRate(VOLTAGE_RAMP);
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //eg: setDefaultCommand(new MySpecialCommand());
