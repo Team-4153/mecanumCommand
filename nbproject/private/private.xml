@@ -3,6 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/FRC4153/code/2013/Java/MecanumCommand/src/com/team4153/subsystems/GyroSensor.java</file>
+            <file>file:/C:/FRC4153/code/2013/Java/MecanumCommand/src/com/team4153/commands/CommandBase.java</file>
+            <file>file:/C:/FRC4153/code/2013/Java/MecanumCommand/src/com/team4153/OI.java</file>
+            <file>file:/C:/FRC4153/code/2013/Java/MecanumCommand/src/com/team4153/RobotMain.java</file>
+            <file>file:/C:/FRC4153/code/2013/Java/MecanumCommand/src/com/team4153/subsystems/Chassis.java</file>
+            <file>file:/C:/FRC4153/code/2013/Java/MecanumCommand/src/com/team4153/commands/DriveWithJoystick.java</file>
+            <file>file:/C:/FRC4153/code/2013/Java/MecanumCommand/src/com/team4153/RobotMap.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -6,3 +6,4 @@ resources/
 suite/
 /build/
 __MACOSX/
+!/resources/
