@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    private Joystick joystick;
-    private Button triggerButton;
+    private static Joystick joystick;
+    private static Button triggerButton;
     
     public OI(){
 	joystick = new Joystick(RobotMap.JOYSTICK_PORT);
 	triggerButton = new JoystickButton(joystick, RobotMap.JSBUTTON_TRIGGER);
-	triggerButton.whenPressed(new DriveWithJoystick());
+//	triggerButton.whenPressed(new DriveWithJoystick());
     }
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -51,10 +51,10 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-    public Joystick getJoystick() {
+    public static Joystick getJoystick() {
 	return joystick;
     }
-    public Button getTriggerButton(){
+    public static Button getTriggerButton(){
 	return triggerButton;
     }
 }

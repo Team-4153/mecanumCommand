@@ -1,10 +1,13 @@
 
 package com.team4153.subsystems;
 
+import com.team4153.OI;
 import com.team4153.RobotMap;
+import com.team4153.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -26,15 +29,25 @@ public class Chassis extends Subsystem {
      */
     public Chassis(){
 	try {
+	    System.out.println("Chassis Construtor started");
 	    rightFront = new CANJaguar(RobotMap.JAG_RIGHT_FRONT_MOTOR);
+	    System.out.println("JAG Right Front works, "+RobotMap.JAG_RIGHT_FRONT_MOTOR);
 	    rightRear = new CANJaguar(RobotMap.JAG_RIGHT_REAR_MOTOR);
+	    System.out.println("JAG Right Back works, "+RobotMap.JAG_RIGHT_REAR_MOTOR);
 	    leftFront = new CANJaguar(RobotMap.JAG_LEFT_FRONT_MOTOR);
+	    System.out.println("JAG Left Front works, "+RobotMap.JAG_LEFT_FRONT_MOTOR);
 	    leftRear = new CANJaguar(RobotMap.JAG_LEFT_REAR_MOTOR);
+	    System.out.println("JAG Left Back works, "+RobotMap.JAG_LEFT_REAR_MOTOR);
+            
 	} catch (CANTimeoutException ex) {
-	    System.out.println("Chassis constructor CANTimeoutException: " + ex.toString());
-	    System.exit(-1);
+	    System.out.println("Chassis constructor CANTimeoutException: ");
+            ex.printStackTrace();
+	    //System.exit(-1);
 	}
 	drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
+        drive.setInvertedMotor(MotorType.kFrontLeft, true);//Left front motor normally opposite
+       
+//	drive = new RobotDrive(leftRear, leftRear, leftRear, leftRear);
 	drive.setSafetyEnabled(false);
     }
     
@@ -44,6 +57,7 @@ public class Chassis extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //eg: setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new DriveWithJoystick());
     }
    
 	    
@@ -53,13 +67,28 @@ public class Chassis extends Subsystem {
      * @param heading The gyro angle/heading
      */
     public void mecanumDrive(Joystick stick, double heading){
-	double x,y,twist;
+	double twist;
 	
-	x=stick.getX()/4.0*-1.0; // invert left-right
-	y=stick.getY()/4.0;
+//	
+//	x=stick.getX()/4.0*-1.0; // invert left-right
+//	y=stick.getY()/4.0;
 	twist=stick.getTwist()/3.0;
-	System.out.println("X: " + x + " Y: " + y + " Twist: " + twist + " Angle: " + heading);
-	this.drive.mecanumDrive_Cartesian(x, y, twist, heading);
+//	System.out.println("X: " + x + " Y: " + y + " Twist: " + twist + " Angle: " + heading);
+//	this.drive.mecanumDrive_Cartesian(x, y, twist, heading);
+	
+        
+        //if(OI.getTriggerButton().get()){
+            double x,y;
+            x=stick.getX()/-2.0;
+            y=stick.getY()/-4.0;
+            this.drive.mecanumDrive_Cartesian(x, y, twist, heading);
+     //   }
+     //   else{
+     //       double magnitude, direction;
+     //       magnitude = stick.getMagnitude()/4.0;
+      //      direction = stick.getDirectionDegrees()/4.0;
+     //       this.drive.mecanumDrive_Polar( magnitude, direction, twist);
+     //   }
     }
 
     /**
@@ -67,7 +96,7 @@ public class Chassis extends Subsystem {
      */
     public void driveHalt() {
 	System.out.println("** driveHalt");
-	this.drive.mecanumDrive_Cartesian(0,0,0,0);
+	this.drive.mecanumDrive_Polar(0,0,0);
     }
 }
 
