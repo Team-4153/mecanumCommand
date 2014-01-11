@@ -30,16 +30,16 @@ public class Chassis extends Subsystem {
     public Chassis(){
 	try {
 	    System.out.println("Chassis Construtor started");
-	    rightFront = new CANJaguar(RobotMap.JAG_RIGHT_FRONT_MOTOR);
+	    rightFront = new CANJaguar(RobotMap.JAG_RIGHT_FRONT_MOTOR,CANJaguar.ControlMode.kSpeed );
         this.configSpeedControl(rightFront);
 	    System.out.println("JAG Right Front works, "+RobotMap.JAG_RIGHT_FRONT_MOTOR);
-	    rightRear = new CANJaguar(RobotMap.JAG_RIGHT_REAR_MOTOR);
+	    rightRear = new CANJaguar(RobotMap.JAG_RIGHT_REAR_MOTOR,CANJaguar.ControlMode.kSpeed);
         this.configSpeedControl(rightRear);
 	    System.out.println("JAG Right Back works, "+RobotMap.JAG_RIGHT_REAR_MOTOR);
-	    leftFront = new CANJaguar(RobotMap.JAG_LEFT_FRONT_MOTOR);
+	    leftFront = new CANJaguar(RobotMap.JAG_LEFT_FRONT_MOTOR,CANJaguar.ControlMode.kSpeed);
         this.configSpeedControl(leftFront);
 	    System.out.println("JAG Left Front works, "+RobotMap.JAG_LEFT_FRONT_MOTOR);
-	    leftRear = new CANJaguar(RobotMap.JAG_LEFT_REAR_MOTOR);
+	    leftRear = new CANJaguar(RobotMap.JAG_LEFT_REAR_MOTOR,CANJaguar.ControlMode.kSpeed);
         this.configSpeedControl(leftRear);
 	    System.out.println("JAG Left Back works, "+RobotMap.JAG_LEFT_REAR_MOTOR);
             
@@ -50,8 +50,8 @@ public class Chassis extends Subsystem {
 	}
     
 	drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
-        drive.setInvertedMotor(MotorType.kFrontLeft, true);//Left front motor normally opposite
-       
+    drive.setInvertedMotor(MotorType.kFrontLeft, true);//Left front motor normally opposite
+    drive.setMaxOutput(20);//TODO: Fix the magic numbers
 //	drive = new RobotDrive(leftRear, leftRear, leftRear, leftRear);
 	drive.setSafetyEnabled(false);
     }
@@ -62,12 +62,13 @@ public class Chassis extends Subsystem {
         final int CPR = 360;
         final double ENCODER_FINAL_POS = 0;
         final double VOLTAGE_RAMP = 40;
-        jag.setPID(1, 1, 0);
+        jag.setPID(0.4, .005, 0);
+        jag.changeControlMode(CANJaguar.ControlMode.kSpeed);
         jag.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
         jag.configEncoderCodesPerRev(CPR);
-        jag.enableControl(ENCODER_FINAL_POS);
         jag.setVoltageRampRate(VOLTAGE_RAMP);
-        jag.changeControlMode(CANJaguar.ControlMode.kSpeed);
+        jag.enableControl(ENCODER_FINAL_POS);
+        
         
 //        System.out.println("Control Mode = " + jag.getControlMode());
                
@@ -98,10 +99,13 @@ public class Chassis extends Subsystem {
         
         //if(OI.getTriggerButton().get()){
             double x,y;
-            x=stick.getX()/-2.0;
-            y=stick.getY()/-2.0;
+      // These are for percent Vbus      
+//            x=stick.getX()/-2.0;
+//            y=stick.getY()/-2.0;
+            x=stick.getX();
+            y=stick.getY();
             this.drive.mecanumDrive_Cartesian(x, y, twist, heading);
-            System.out.println("X: " + x + " Y: " + y + " Twist: " + twist + " Angle: " + heading);
+//            System.out.println("X: " + x + " Y: " + y + " Twist: " + twist + " Angle: " + heading);
      //   }
      //   else{
      //       double magnitude, direction;
