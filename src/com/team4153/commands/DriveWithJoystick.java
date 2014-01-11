@@ -11,7 +11,7 @@ public class DriveWithJoystick extends CommandBase {
     public DriveWithJoystick() {
         // Use requires() here to declare subsystem dependencies
 	requires(chassis);
-	requires(gyro);
+	requires(gyroSensor);
 	System.out.println("** DriveWithJoystick const");
     }
 
@@ -22,7 +22,7 @@ public class DriveWithJoystick extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	chassis.mecanumDrive(oi.getJoystick(), gyro.getAngle());
+	chassis.mecanumDrive(oi.getJoystick(), gyroSensor.getAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
