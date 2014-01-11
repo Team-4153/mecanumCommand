@@ -62,10 +62,15 @@ public class Chassis extends Subsystem {
         final int CPR = 360;
         final double ENCODER_FINAL_POS = 0;
         final double VOLTAGE_RAMP = 40;
+        jag.setPID(1, 1, 0);
         jag.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
         jag.configEncoderCodesPerRev(CPR);
         jag.enableControl(ENCODER_FINAL_POS);
         jag.setVoltageRampRate(VOLTAGE_RAMP);
+        jag.changeControlMode(CANJaguar.ControlMode.kSpeed);
+        
+//        System.out.println("Control Mode = " + jag.getControlMode());
+               
     }
     
     public void initDefaultCommand() {
@@ -94,7 +99,7 @@ public class Chassis extends Subsystem {
         //if(OI.getTriggerButton().get()){
             double x,y;
             x=stick.getX()/-2.0;
-            y=stick.getY()/-4.0;
+            y=stick.getY()/-2.0;
             this.drive.mecanumDrive_Cartesian(x, y, twist, heading);
             System.out.println("X: " + x + " Y: " + y + " Twist: " + twist + " Angle: " + heading);
      //   }
