@@ -54,7 +54,7 @@ public class Chassis extends Subsystem {
 
         drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
         drive.setInvertedMotor(MotorType.kFrontLeft, true);//Left front motor normally opposite
-        drive.setMaxOutput(20);//TODO: Fix the magic numbers
+        drive.setMaxOutput(2);//TODO: Fix the magic numbers
 //	drive = new RobotDrive(leftRear, leftRear, leftRear, leftRear);
         drive.setSafetyEnabled(false);
     }
@@ -70,12 +70,13 @@ public class Chassis extends Subsystem {
         // and here:
         // http://www.chiefdelphi.com/forums/showthread.php?t=89721
         // neither seem correct.
-        jag.setPID(0.4, .005, 0);
+//        jag.setPID(0.4, .005, 0);
+        jag.setPID(-0.003, -0.013, 0);
         jag.changeControlMode(CANJaguar.ControlMode.kSpeed);
         jag.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
         jag.configEncoderCodesPerRev(CPR);
 //        jag.setVoltageRampRate(VOLTAGE_RAMP);
-        jag.enableControl(ENCODER_FINAL_POS);
+        jag.enableControl();
 
 //        System.out.println("Control Mode = " + jag.getControlMode());
     }
@@ -117,6 +118,18 @@ public class Chassis extends Subsystem {
         //      direction = stick.getDirectionDegrees()/4.0;
         //       this.drive.mecanumDrive_Polar( magnitude, direction, twist);
         //   }
+    }
+    
+    public void wheelDrive(Joystick stick){
+        double x=20*stick.getX();
+        try {
+            leftFront.setX(x);
+            leftRear.setX(x);
+            rightFront.setX(x);
+            rightRear.setX(x);
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
