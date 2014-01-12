@@ -71,7 +71,7 @@ public class Chassis extends Subsystem {
         // http://www.chiefdelphi.com/forums/showthread.php?t=89721
         // neither seem correct.
 //        jag.setPID(0.4, .005, 0);
-        jag.setPID(-0.003, -0.013, 0);
+        jag.setPID(1, 0, 0);
         jag.changeControlMode(CANJaguar.ControlMode.kSpeed);
         jag.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
         jag.configEncoderCodesPerRev(CPR);
@@ -121,7 +121,7 @@ public class Chassis extends Subsystem {
     }
     
     public void wheelDrive(Joystick stick){
-        double x=20*stick.getX();
+        double x=stick.getX()*5f;
         try {
             leftFront.setX(x);
             leftRear.setX(x);
