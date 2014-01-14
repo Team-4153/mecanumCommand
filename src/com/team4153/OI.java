@@ -1,6 +1,7 @@
 package com.team4153;
 
 import com.team4153.commands.DriveWithJoystick;
+import com.team4153.commands.GyroReset;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
@@ -14,10 +15,13 @@ public class OI {
 
     private static Joystick joystick;
     private static Button triggerButton;
+    private static Button gyroReset;
 
     public OI() {
         joystick = new Joystick(RobotMap.JOYSTICK_PORT);
         triggerButton = new JoystickButton(joystick, RobotMap.JSBUTTON_TRIGGER);
+        gyroReset=new JoystickButton(joystick,RobotMap.JSBUTTON_GYRO_RESET);
+        gyroReset.whenPressed(new GyroReset());
 //	triggerButton.whenPressed(new DriveWithJoystick());
     }
     //// CREATING BUTTONS
@@ -52,5 +56,9 @@ public class OI {
 
     public static Button getTriggerButton() {
         return triggerButton;
+    }
+    
+    public static Button getGyroResetButton() {
+        return gyroReset;
     }
 }

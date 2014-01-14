@@ -31,6 +31,7 @@ public class GyroSensor extends Subsystem {
     public double getAngle() {
         return gyro.getAngle();
     }
+    
 
     public String toString() {
         return "GyroSensor{" + "gyro=" + gyro + '}';
@@ -38,6 +39,7 @@ public class GyroSensor extends Subsystem {
 
     public void reset() {
         gyro.reset();
+        System.out.println("Gyro Reseted");
     }
 
 }

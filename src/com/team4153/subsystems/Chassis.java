@@ -65,18 +65,21 @@ public class Chassis extends Subsystem {
         final int CPR = 360;
         final double ENCODER_FINAL_POS = 0;
         final double VOLTAGE_RAMP = 40;
+                jag.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
+                        jag.setSpeedReference(CANJaguar.SpeedReference.kNone);
+                        jag.enableControl();
         // PIDs may be required.  Values here:
         //  http://www.chiefdelphi.com/forums/showthread.php?t=91384
         // and here:
         // http://www.chiefdelphi.com/forums/showthread.php?t=89721
         // neither seem correct.
 //        jag.setPID(0.4, .005, 0);
-        jag.setPID(1, 0, 0);
+        /*jag.setPID(1, 0, 0);
         jag.changeControlMode(CANJaguar.ControlMode.kSpeed);
         jag.setSpeedReference(CANJaguar.SpeedReference.kQuadEncoder);
         jag.configEncoderCodesPerRev(CPR);
 //        jag.setVoltageRampRate(VOLTAGE_RAMP);
-        jag.enableControl();
+        jag.enableControl();*/
 
 //        System.out.println("Control Mode = " + jag.getControlMode());
     }
@@ -107,8 +110,8 @@ public class Chassis extends Subsystem {
         // These are for percent Vbus      
 //            x=stick.getX()/-2.0;
 //            y=stick.getY()/-2.0;
-        x = stick.getX();
-        y = stick.getY();
+        x = stick.getX()/4.0;
+        y = stick.getY()/4.0;
         this.drive.mecanumDrive_Cartesian(x, y, twist, heading);
 //            System.out.println("X: " + x + " Y: " + y + " Twist: " + twist + " Angle: " + heading);
         //   }
