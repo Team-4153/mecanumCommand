@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * The Gyro subsystem.
+ * 
  * @author 4153student
  */
 public class GyroSensor extends Subsystem {
@@ -17,8 +18,10 @@ public class GyroSensor extends Subsystem {
     private Gyro gyro;
 
     public GyroSensor() {
+        super("GyroSensor");
         gyro = new Gyro(RobotMap.GYRO_CHANNEL);
     }
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -28,6 +31,10 @@ public class GyroSensor extends Subsystem {
 
     }
 
+    /**
+     *
+     * @return the current angle (degrees I think) integrated from the gyro
+     */
     public double getAngle() {
         return gyro.getAngle();
     }
@@ -37,9 +44,12 @@ public class GyroSensor extends Subsystem {
         return "GyroSensor{" + "gyro=" + gyro + '}';
     }
 
+    /**
+     * Reset the gyro integrator to zero.
+     */
     public void reset() {
         gyro.reset();
-        System.out.println("Gyro Reseted");
+        System.out.println("Gyro Reset");
     }
 
 }

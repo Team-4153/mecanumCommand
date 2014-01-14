@@ -1,10 +1,8 @@
 package com.team4153;
 
-import com.team4153.commands.DriveWithJoystick;
 import com.team4153.commands.GyroReset;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**

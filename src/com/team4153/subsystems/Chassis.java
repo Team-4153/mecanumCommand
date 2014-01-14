@@ -1,6 +1,5 @@
 package com.team4153.subsystems;
 
-import com.team4153.OI;
 import com.team4153.RobotMap;
 import com.team4153.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.CANJaguar;
@@ -31,6 +30,8 @@ public class Chassis extends Subsystem {
      * 
      */
     public Chassis() {
+        super("Chassis");
+        
         try {
             System.out.println("Chassis Construtor started");
             rightFront = new CANJaguar(RobotMap.JAG_RIGHT_FRONT_MOTOR, CANJaguar.ControlMode.kSpeed);
