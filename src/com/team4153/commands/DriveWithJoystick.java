@@ -1,5 +1,7 @@
 package com.team4153.commands;
 
+import com.team4153.OI;
+
 /**
  * Chassis drive command.
  *
@@ -26,7 +28,7 @@ public class DriveWithJoystick extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return !OI.getTriggerButton().get();
     }
 
     // Called once after isFinished returns true
@@ -37,6 +39,7 @@ public class DriveWithJoystick extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        System.out.println("Driver Interrupted");
         end();
     }
 }

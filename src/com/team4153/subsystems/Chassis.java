@@ -68,6 +68,7 @@ public class Chassis extends Subsystem {
                 jag.changeControlMode(CANJaguar.ControlMode.kPercentVbus);
                         jag.setSpeedReference(CANJaguar.SpeedReference.kNone);
                         jag.enableControl();
+                        jag.configMaxOutputVoltage(10);//ToDo: 
         // PIDs may be required.  Values here:
         //  http://www.chiefdelphi.com/forums/showthread.php?t=91384
         // and here:
@@ -87,7 +88,7 @@ public class Chassis extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //eg: setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new DriveWithJoystick());
+//        setDefaultCommand(new DriveWithJoystick());
     }
 
     /**

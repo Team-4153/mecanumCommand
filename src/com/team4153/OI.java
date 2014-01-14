@@ -22,7 +22,8 @@ public class OI {
         triggerButton = new JoystickButton(joystick, RobotMap.JSBUTTON_TRIGGER);
         gyroReset=new JoystickButton(joystick,RobotMap.JSBUTTON_GYRO_RESET);
         gyroReset.whenPressed(new GyroReset());
-//	triggerButton.whenPressed(new DriveWithJoystick());
+        triggerButton.whenPressed(new DriveWithJoystick());
+//        (new DriveWithJoystick()).start();
     }
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.

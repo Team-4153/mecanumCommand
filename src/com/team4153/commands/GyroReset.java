@@ -17,20 +17,26 @@ public class GyroReset extends CommandBase {
     }
     
     protected void initialize() {
+        System.out.println("Init");
     }
 
     protected void execute() {
+        System.out.println("Execute");
         gyroSensor.reset();
     }
 
     protected boolean isFinished() {
+        System.out.println("Finished");
         return true;
     }
 
     protected void end() {
+        System.out.println("end");
+        scheduler.add(new DriveWithJoystick());
     }
 
     protected void interrupted() {
+        System.out.println("Interupted");
     }
     
     

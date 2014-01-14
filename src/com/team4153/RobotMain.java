@@ -31,7 +31,7 @@ public class RobotMain extends IterativeRobot {
         //DriveCommand = new DriveWithJoystick();
 
         // Initialize all subsystems
-        CommandBase.init();
+        CommandBase.init(commandScheduler);
     }
 
     public void autonomousInit() {

@@ -7,6 +7,7 @@ import com.team4153.subsystems.GyroSensor;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -22,15 +23,16 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems here
     public static Chassis chassis= new Chassis();
     public static GyroSensor gyroSensor = new GyroSensor();
+    public static Scheduler scheduler;
 
-    public static void init() {
+    public static void init(Scheduler s) {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
         // which commands extend), subsystems are not guaranteed to be
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
         oi = new OI();
-        
+        scheduler=s;
         
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(chassis);
