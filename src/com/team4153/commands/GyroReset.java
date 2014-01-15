@@ -19,28 +19,27 @@ public class GyroReset extends CommandBase {
     }
     
     protected void initialize() {
-//        System.out.println("Init");
+        System.out.println("Init");
         finished=false;
     }
 
     protected void execute() {
-//        System.out.println("Execute");
+        System.out.println("Execute");
         gyroSensor.reset();
         finished=true;
     }
 
     protected boolean isFinished() {
-//        System.out.println("Finished");
+        System.out.println("Finished");
         return finished;
     }
 
     protected void end() {
-//        System.out.println("end");
-        scheduler.add(new DriveWithJoystick());
+        System.out.println("end");
     }
 
     protected void interrupted() {
-//        System.out.println("Interupted");
+        System.out.println("reset Interupted");
     }
     
     
