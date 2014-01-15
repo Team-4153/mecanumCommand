@@ -1,11 +1,8 @@
 package com.team4153.commands;
 
 import com.team4153.OI;
-import com.team4153.RobotMap;
 import com.team4153.subsystems.Chassis;
 import com.team4153.subsystems.GyroSensor;
-import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,7 +18,7 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems here
-    public static Chassis chassis= new Chassis();
+    public static Chassis chassis = new Chassis();
     public static GyroSensor gyroSensor = new GyroSensor();
     public static Scheduler scheduler;
 
