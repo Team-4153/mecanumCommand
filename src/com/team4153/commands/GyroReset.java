@@ -12,31 +12,35 @@ package com.team4153.commands;
  */
 public class GyroReset extends CommandBase {
 
+    boolean finished=false;
+    
     public GyroReset(){
         requires(gyroSensor);
     }
     
     protected void initialize() {
-        System.out.println("Init");
+//        System.out.println("Init");
+        finished=false;
     }
 
     protected void execute() {
-        System.out.println("Execute");
+//        System.out.println("Execute");
         gyroSensor.reset();
+        finished=true;
     }
 
     protected boolean isFinished() {
-        System.out.println("Finished");
-        return true;
+//        System.out.println("Finished");
+        return finished;
     }
 
     protected void end() {
-        System.out.println("end");
+//        System.out.println("end");
         scheduler.add(new DriveWithJoystick());
     }
 
     protected void interrupted() {
-        System.out.println("Interupted");
+//        System.out.println("Interupted");
     }
     
     

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,13 +18,14 @@ public class OI {
     private static Button triggerButton;
     private static Button gyroReset;
 
-    public OI() {
+    public OI(Scheduler scheduler) {
         joystick = new Joystick(RobotMap.JOYSTICK_PORT);
         triggerButton = new JoystickButton(joystick, RobotMap.JSBUTTON_TRIGGER);
         gyroReset=new JoystickButton(joystick,RobotMap.JSBUTTON_GYRO_RESET);
         gyroReset.whenPressed(new GyroReset());
-        triggerButton.whenPressed(new DriveWithJoystick());
+//        triggerButton.whenPressed(new DriveWithJoystick());
 //        (new DriveWithJoystick()).start();
+        scheduler.add(new DriveWithJoystick());
     }
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.

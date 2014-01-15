@@ -24,11 +24,13 @@ public class DriveWithJoystick extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         chassis.mecanumDrive(oi.getJoystick(), gyroSensor.getAngle());
+//        System.out.println("Gyro Angle: "+gyroSensor.getAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !OI.getTriggerButton().get();
+//        return !OI.getTriggerButton().get();
+        return false;
     }
 
     // Called once after isFinished returns true
