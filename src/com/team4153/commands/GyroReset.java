@@ -14,7 +14,9 @@ package com.team4153.commands;
 public class GyroReset extends CommandBase {
     
     public GyroReset(){
-        requires(chassis); // need to require chassis so we get the "focus" in the scheduler
+        // need to require chassis so we get the "focus" in the scheduler since 
+        // chassis has a default command DriveWithJoystick that requires it
+        requires(chassis); 
         requires(gyroSensor);
     }
     
