@@ -52,11 +52,11 @@ public class OI {
         return joystick;
     }
 
-    public static Button getTriggerButton() {
-        return triggerButton;
-    }
-    
-    public static Button getGyroResetButton() {
-        return gyroReset;
-    }
+//    public static Button getTriggerButton() {
+//        return triggerButton;
+//    }
+//    
+//    public static Button getGyroResetButton() {
+//        return gyroReset;
+//    }
 }

@@ -17,6 +17,11 @@ public class GyroSensor extends Subsystem {
 
     private Gyro gyro;
 
+    
+    private void dbg(String msg){
+        System.out.println("GyroSensor (ss): " + msg);
+    }
+    
     public GyroSensor() {
         super("GyroSensor");
         gyro = new Gyro(RobotMap.GYRO_CHANNEL);
@@ -49,7 +54,7 @@ public class GyroSensor extends Subsystem {
      */
     public void reset() {
         gyro.reset();
-        System.out.println("Gyro Reset");
+        dbg("Gyro Reset");
     }
 
 }
